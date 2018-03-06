@@ -1,0 +1,119 @@
+##python 数据分析
+
+2**27
+
+###忘记给变量赋值，可以使用_ixx（输入变量）和_xx（输出变量） xx代指行号
+
+foo='bar'
+foo
+_i86
+_86
+
+#####numpy  第三次学习。。遗忘的真严重
+
+#创建ndarry
+import numpy as np
+
+data1= [6,7.5,8,0,1]
+arr1=np.array(data1)
+arr1
+#嵌套序列，转化为多维数组
+data2=[[1,2,3,4],[5,6,7,8]]
+arr2=np.array(data2)
+arr2
+
+#查看维度数量和单维度大小
+arr2.ndim
+arr2.shape
+
+np.zeros(10)#建一个全为零的 数组
+np.zeros((3,5))#3行5列
+
+np.empty((2,3,2))# 2组 3行2列  返回一些垃圾值
+
+np.arange(15)#从零开始的一组数
+
+#dtype 
+arr1=np.array([1,2,3],dtype=np.float64)
+arr2=np.array([1,2,3],dtype=np.int32)  #定义数据格式，浮点数还是整数
+##转换数据格式
+
+arr= np.array([1,2,3,4,5])
+arr.dtype
+float_arr=arr.astype(np.float64)
+float_arr.dtype
+#通过astype转换
+arr= np.array([3.7,-1.2,-2.6,0.5,12.9,10.1])
+arr.astype(np.int32)
+#小数部分直接截断
+numeric_strings=np.array(['1.25','-9.6','42'],dtype=np.string_)
+numeric_strings.astype(float)
+#如果字符串全是数字，可以转化成数值
+
+int_array=np.arange(10)
+calibers=np.array([.22,.270,.357,.380,.44,.50],dtype=np.float64)
+int_array.astype(calibers.dtype)
+#直接引用某些现成的格式
+
+arr= np.array([[1.,2.,3.],[4.,5.,6.]])
+arr*arr
+#可以执行矩阵运算
+
+#索引和切片
+arr=np.arange(10)
+
+arr[5]
+arr[5:8]
+arr[5:8]=12
+
+arr_slice=arr[5:8]  #一个特性，再赋值出来也会链接到原数据，与列表不同
+arr_slice[1]=12345
+arr
+arr_slice[:]=64
+arr
+#如果要进行赋值  arr[:].copy()
+arr2=arr[5:8].copy()
+arr2[:]=55
+arr
+
+#二维数组切片直接切到二维行
+arr2d=np.array([[1,2,3],[4,5,6],[7,8,9]])
+arr2d[2]
+#切到某个数用两个数表示
+arr2d[0,2]
+arr3d=np.array([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]])
+arr3d[0]
+
+old_values=arr3d[0].copy()
+arr3d[0]=42
+arr3d
+arr3d[0]=old_values
+arr3d
+
+#布尔型索引
+names=np.array(['bob','joe','will','bob','will','joe','joe'])
+data=np.random.randn(7,4)
+data
+names=='bob'
+data[names=='bob'] #跟R类似
+
+data[-(names=='bob')]
+## & | 和或都可用于布尔条件
+
+data[data<0]=0
+data
+data[names!='joe']=7
+
+##花式索引
+arr =np.empty((8,4))
+for i in range(8):
+   arr[i]=i
+ 
+arr=np.arange(32).reshape((8,4)) #切成8行，4列
+
+arr[[1,5,7,2],[0,3,1,2]] #分别切1,0  5,3  等四个数
+arr[[1,5,6,2]][:,[0,3,1,2]]  #切片，并调换顺序
+
+
+
+
