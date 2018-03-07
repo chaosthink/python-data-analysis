@@ -1,0 +1,361 @@
+# python-data-analysis
+ipython
+a=5
+a
+import numpy as np
+data={i : randn() for i in range(7)}
+from numpy.random import randn
+data= {i :randn() for i in range(7)}
+data
+an_apple=27 
+an_example=42
+#an+ tab
+#出现内置函数及定义的变量
+b = [1,2,3]
+#b+tab 出现b的各类应用
+import datetime
+#内省
+b?
+#出现b的通用信息
+def add_numbers(a,b):
+     """
+     add two numbers together
+     returns
+     ------
+     the_sum:type of argments
+     """
+     return a+b
+#定义a+b函数
+#通配符
+np.*load*?
+##
+def f(x,y,z):
+  return(x+y)/z
+a=5
+b=6
+c=7.5
+
+result=f(a,b,c)
+c
+result
+###剪切板粘贴方式 ctrl-shift-v
+x=5
+y=7
+if x>5
+  x+=1
+  y=8
+##使用魔术贴功能%paste 或%cpaste
+####使用magic command
+a=np.random.randn(100,100)
+%timeit np.dot(a,a)
+
+##python 数据分析
+
+2**27
+
+###忘记给变量赋值，可以使用_ixx（输入变量）和_xx（输出变量） xx代指行号
+
+foo='bar'
+foo
+_i86
+_86
+
+#####numpy  第三次学习。。遗忘的真严重
+
+#创建ndarry
+import numpy as np
+
+data1= [6,7.5,8,0,1]
+arr1=np.array(data1)
+arr1
+#嵌套序列，转化为多维数组
+data2=[[1,2,3,4],[5,6,7,8]]
+arr2=np.array(data2)
+arr2
+
+#查看维度数量和单维度大小
+arr2.ndim
+arr2.shape
+
+np.zeros(10)#建一个全为零的 数组
+np.zeros((3,5))#3行5列
+
+np.empty((2,3,2))# 2组 3行2列  返回一些垃圾值
+
+np.arange(15)#从零开始的一组数
+
+#dtype 
+arr1=np.array([1,2,3],dtype=np.float64)
+arr2=np.array([1,2,3],dtype=np.int32)  #定义数据格式，浮点数还是整数
+##转换数据格式
+
+arr= np.array([1,2,3,4,5])
+arr.dtype
+float_arr=arr.astype(np.float64)
+float_arr.dtype
+#通过astype转换
+arr= np.array([3.7,-1.2,-2.6,0.5,12.9,10.1])
+arr.astype(np.int32)
+#小数部分直接截断
+numeric_strings=np.array(['1.25','-9.6','42'],dtype=np.string_)
+numeric_strings.astype(float)
+#如果字符串全是数字，可以转化成数值
+
+int_array=np.arange(10)
+calibers=np.array([.22,.270,.357,.380,.44,.50],dtype=np.float64)
+int_array.astype(calibers.dtype)
+#直接引用某些现成的格式
+
+arr= np.array([[1.,2.,3.],[4.,5.,6.]])
+arr*arr
+#可以执行矩阵运算
+
+#索引和切片
+arr=np.arange(10)
+
+arr[5]
+arr[5:8]
+arr[5:8]=12
+
+arr_slice=arr[5:8]  #一个特性，再赋值出来也会链接到原数据，与列表不同
+arr_slice[1]=12345
+arr
+arr_slice[:]=64
+arr
+#如果要进行赋值  arr[:].copy()
+arr2=arr[5:8].copy()
+arr2[:]=55
+arr
+
+#二维数组切片直接切到二维行
+arr2d=np.array([[1,2,3],[4,5,6],[7,8,9]])
+arr2d[2]
+#切到某个数用两个数表示
+arr2d[0,2]
+arr3d=np.array([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]])
+arr3d[0]
+
+old_values=arr3d[0].copy()
+arr3d[0]=42
+arr3d
+arr3d[0]=old_values
+arr3d
+
+#布尔型索引
+names=np.array(['bob','joe','will','bob','will','joe','joe'])
+data=np.random.randn(7,4)
+data
+names=='bob'
+data[names=='bob'] #跟R类似
+
+data[-(names=='bob')]
+## & | 和或都可用于布尔条件
+
+data[data<0]=0
+data
+data[names!='joe']=7
+
+##花式索引
+arr =np.empty((8,4))
+for i in range(8):
+   arr[i]=i
+ 
+arr=np.arange(32).reshape((8,4)) #切成8行，4列
+
+arr[[1,5,7,2],[0,3,1,2]] #分别切1,0  5,3  等四个数
+arr[[1,5,6,2]][:,[0,3,1,2]]  #切片，并调换顺序
+
+#转置和轴对换
+
+arr= np.arange(15).reshape((3,5))
+arr
+arr.T #转置  3行5列变成 5行3列
+#计算矩阵內积
+arr=np.random.randn(6,3)
+np.dot(arr.T,arr)
+
+#高维数组要自行定义轴编号
+arr=np.arange(16).reshape((2,2,4))
+arr
+arr.transpose((1,0,2))
+
+#
+arr
+arr.swapaxes(1,2)
+
+#####通用函数
+arr=np.arange(10)
+
+np.sqrt(arr) 
+
+np.exp(arr)
+
+x=np.random.randn(8)
+
+y=np.random.randn(8)
+
+np.maximum(x,y)
+
+#abs fabs  返回绝对值
+#sqrt 平方根
+#square 平方 等同于**2
+#exp 计算指数
+#log log10 log2 log1p 对数
+#sign 计算正负号
+#ceil 大于等于该值的最小整数
+#floor 小于该值的最大整数
+#rint 四舍五入
+#modf 将小数和整数以两个数组返回
+##isnan 返回nan值的布尔数据
+#cos cosh sin shih tan tanh 三角函数
+#arccos arcsin 等 反三角函数
+#add 数组相加
+#subtract 相减
+#multiple 相乘
+#divide 相除
+#maximun fmax 最大值，后面的忽略nan值
+#minimum fmin 类比上面
+#mod 求余数
+
+###数组进行数据处理
+points =np.arange(-5,5,0.01) #生成1000个点
+xs,ys =np.meshgrid(points,points)
+
+import matplotlib.pyplot as plt
+z=np.sqrt(xs**2+ys**2)
+plt.imshow(z,cmap=plt.cm.gray);plt.colorbar()
+plt.title("image plot of $\sqrt{x!2+y^2}$ for a grid of value")
+
+#布尔值代入数组运算
+
+xarr= np.array([1.1,1.2,1.3,1.4,1.5])
+yarr=np.array([2.1,2.2,2.3,2.4,2.5])
+cond=np.array([True,False,True,True,False])
+
+result= [(x if c else y )
+  for x,y,c in zip(xarr,yarr,cond)]
+
+result=np.where(cond,xarr,yarr)#寻找第一个参数匹配的后面的值 类比R里的 elseif
+arr=np.random.randn(4,4)
+
+np.where(arr>0,2,-2)#加入了条件格式
+
+np.where(arr>0,2,arr)
+
+result=[] #定义变量
+for i in range(n):
+   if cond1[i] and cond2[i]:
+     result.append(0)
+   elif cond1[i]:
+     result.append(1)
+   elif cond2[i]:
+     result.append(2)
+   else:
+     result.append(3)
+	 
+#参考嵌套
+np.where(cond1&cond2 ,0,np.where(cond1,1,np.where(cond2,2,3)))  ##类比与excel 的if函数
+
+     
+####数学和统计方法
+arr=np.random.randn(5,4)
+
+arr.mean()
+np.mean(arr)
+arr.sum()
+
+arr=np.array([[0,1,2],[3,4,5],[6,7,8]])
+
+arr.cumsum(0)
+arr.cumprod(1)
+##std var 标准差 方差
+###布尔型数组
+
+arr=np.random.randn(100)
+(arr>0).sum()
+## any all 检查是否存在true 是否所有都是true
+bools=np.array([False,False,True])
+bools.any()
+bools.all()
+
+arr=np.random.randn(8)
+
+arr
+
+arr.sort()
+arr=np.random.randn(5,3)
+arr
+arr.sort()
+arr.sort(1)
+####
+##寻找唯一值
+names= np.array(['bob','joe','will','bob','will','joe','joe'])
+np.unique(names)
+ints=np.array([3,3,3,2,2,1,1,4,4])
+np.unique(ints)
+array([1,2,3,4])
+
+values=np.array([6,0,0,3,2,5,6])
+np.in1d(value,[2,3,6])
+#判定值是否存在，返回布尔值
+###数组文件的输入输出
+
+arr=np.arange(10)
+
+np.save('some_array',arr)
+
+np.load('some_array.npy')
+
+#读取txt文件
+
+arr=np.loadtxt('array_ex.txt',delimiter=',')
+
+x=np.array([[1.,2.,3.],[4.,5.,6.]])
+
+y=np.array([[6.,23.],[-1.,7],[8,9]])
+
+x.dot(y)
+
+from numpy.linalg import inv,qr
+
+X=np.random.randn(5,5)
+
+mat=X.T.dot(X)
+
+inv(mat)  #计算逆矩阵
+
+mat.dot(inv(mat))
+
+q,r=qr(mat)
+
+#diag 返回对角线的元素
+#dot 矩阵乘法
+#trace  对角线元素的和
+#det 行列式
+#eig 特征值 特征向量
+#inv 逆矩阵
+#qr  计算qr分解
+#solve 解线性方程组
+
+#seed  生成随机种子
+#rand 产生均匀分布的样本值
+#binomail 产生二项分布的样本值
+#normal 产生正态分布样本值
+#chisquare 产生卡方分布
+
+##随机漫步
+import random
+position =0
+walk=[position]
+steps =1000
+for i in xrange(steps):
+   step =1 if random.randint(0,1) else -1
+   position +- step
+   walk.append(position)
+   
+nsteps=1000
+draws=np.random.ranint(0,2,size=nsteps)
+steps=np.where(draws>0,1,-1)
+walk=steps.cumsum()
+
+
