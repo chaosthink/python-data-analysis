@@ -1,0 +1,63 @@
+#pandas 入门
+pip install pandas 
+from pandas import Series,DataFrame
+import pandas as pd
+import numpy as np
+##series  一维数组
+obj=Series([4,7,-5,3])
+
+obj.value #获取值
+obj.index#获取索引
+
+obj2=Series([4,7,-5,3],index=['d','b','a','c'])#自行建索引，类比R的 colname
+
+obj2['a'] #通过索引选值
+obj2['d']=6 #通过索引修改值
+
+obj2[obj2>0] 
+obj2*2
+np.exp(obj2)
+###上述操作都跟R相差不多
+'b' in obj2
+
+sdata={'ohio':35000,'texas':71000,'oregon':16000,'utah':5000} #数据字典
+obj3=Series(sdata) #将数据字典直接转化为series格式
+
+obj3.name = 'population'
+obj3.index.name='state'
+
+obj.index=['bob','steve','jeff','ryan']
+obj
+
+###dataframe
+
+data= {'state':['ohio','ohio','ohio','nebada','nevada'],'year':[2000,2001,2002,2001,2002],'pop':[1.5,1.7,3.6,2.4,2.9]}
+frame=DataFrame(data)
+
+DataFrame(data,columns=['year','state','pop']) #转变列顺序
+
+frame2= DataFrame(data,columns=['year','state','pop','debt'],index=['one','two','three','four','five'])
+
+frame2['state'] #抽取某列
+frame2.year #第二种方法
+
+frame2.ix['three']  #索引到某一个值
+frame2['debt']=16.5
+
+frame2['debt']=np.arange(5.)
+
+frame2['eastern']=frame2.state == 'ohio'  #创造薪列
+
+frame2
+
+del frame2['eastern']  #删除列
+
+#嵌套字典
+pop ={'nevada':{2001:2.4,2002:2.9},'ohio':{2000:1.5,2001:1.7,2002:3.6}}
+
+frame3= DataFrame(pop)
+frame3.T
+
+frame3.index.name= 'year';frame3.columns.name='state'
+
+obj
