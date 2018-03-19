@@ -310,3 +310,43 @@ data=Series([1,NA,3.5,NA,7])
 data.dropna()
 data[data.notnull()]
 #page 161
+data=DataFrame([[1.,6.5,3.],[1.,NA,NA],[NA,NA,NA],[NA,6.5,3.]])
+cleaned=data.dropna() #存在na值的行全删
+data.dropna(how='all') #只删正行都是na值的
+data.dropna(how='all',axis=1)
+
+df=DataFrame(np.random.randn(7,3))
+df.ix[:4,1]=NA;df.ix[:2,2]=NA
+#填补缺失数据
+df.fillna(0) #将缺失值填补为0
+
+df.fillna({1:0.5,2:-1})#将第一列填补为0.5，第二列填补为-1
+
+df=DataFrame(np.random.randn(6,3))
+df.ix[2:,1]=NA;df.ix[4:,2]=NA
+df.fillna(method='fill')
+
+data=Series([1.,NA,3.5,NA,7])
+data.fillna(data.mean())  #使用平均数填补
+#limit参数表示连续填充的最大数量
+
+####层次化索引
+data=Series(np.random.randn(10),index=[['a','a','a','b','b','b','c','c','d','d'],[1,2,3,1,2,3,1,2,2,3]])
+data.index
+data['b']
+data['b':'c']
+data.ix[['b','c']]
+data[:,2]  #抽取每一层的2序数字
+
+data.unstack() #转置为二维数据框
+
+frame=DataFrame(np.arange(12).reshape((4,3)),index=[['a','a','b','b'],[1,2,1,2]],columns=[['ohio','ohio','colorado'],['green','red','green']])
+frame.index.names=['key1','key2']
+frame.columns.names=['state','color']
+
+#####使用DataFrame的列
+frame=DataFrame({'a':range(7),'b':range(7,0,-1),'c':['one','one','one','two','two','two','two'],'d':[0,1,2,0,1,2,3]})
+frame2=frame.set_index(['c','d'])
+frame.set_index(['c','d'],drop=False)
+
+#end
