@@ -1,0 +1,56 @@
+####数据读取
+df=pd.read_csv('xxxx.csv')  #读取CSV文件
+pd.read_table('xxx.csv',sep=',') ##类似，只是需要指定逗号
+pd.read_csv('xxxx.csv',header=None) #分配默认列名
+pd.read_csv('xxx.csv',names=['a','b','c']) #自定义列名
+
+names=['a','b','c']
+pd.read_csv('xxx.csv',names=names,index_col='message') # 也可以自定义索引
+#可以定义多元化索引  例如 index_col=['message1','message2']
+
+result=pd.read_csv('xxx.csv',na_values=['NULL'] #表示可以接受NA值
+"""
+sep  拆分的格式  同 delimiter
+header  列名
+index_col 标签名
+names 自定义列名
+skiprows 要跳过的行数
+comment 将注释从行尾拆分出去
+parse_dates 尝试将数据解析为日期，默认为F
+nrows  需要读取的行数
+skip_footer 需要忽略的行数 从行尾算起
+encoding 编码方式
+thousands 千分符
+"""
+
+###将数据写出到文本格式
+data= pd.to_csv('out.csv')
+##数组的保存方法
+np.savetxt('xxx.txt',data,delimiter=',')
+##其他分隔符
+data.to_csv('xx.csv',sep='|')
+###禁用行列标签
+data.to_csv('xx.csv',index=False,header=False)
+##只写出指定的列
+data.to_csv('xx.csv',index=False,cols=['a','b','c'])
+#series也可以一样写
+
+####json格式
+import json
+result= json.loads(obj) #即可将json转为python格式
+asjson=json.dumps(result) #将python格式转为json
+#将json格式转为数据框
+siblings=DataFrame(result['siblings'],columns=['name','age'])
+####只读取一部分数据
+
+#####web信息收集
+from lxml.html import parse
+from urllib2 import urlopen
+parsed=parse(urlopen('http://finance.yahoo.com/q/op?s=AAPL+Options'))
+doc=parsed.getroot()
+links=doc.findall('.//a')
+links[15:20]
+#获取到了链接的信息
+#接下来获取url和text_content
+lnk=links[28]
+lnk.get('href')
