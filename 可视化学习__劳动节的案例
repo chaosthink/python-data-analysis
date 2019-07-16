@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jul 16 23:02:31 2019
+
+@author: fangzhaoxing
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pymongo import MongoClient
+from pandas.io.json import json_normalize
+import matplotlib
+
+plt.style.use('ggplot')
+
+?plt.style.use
+
+from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['SimHei']  #解决seaborn中文字体显示问题
+plt.rc('figure', figsize=(10, 10))  #把plt默认的图片size调大一点
+plt.rcParams["figure.dpi"] =mpl.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显示为方块的问题
+%matplotlib inline  ###魔术命令。画图不必再使用plt.show()
+
+###上面代码的详解
+"""
+（1）查看默认配置的方法
+
+        方法一：直接打开matplotlibrc文件
+
+        方式二：print(matplotlib.rc_params())
+
+                      print(matplotlib.rcParamsDefault)   
+
+                      print(matplotlib.rcParams)                               #这三者是等价的
+"""
+
+print(matplotlib.rc_params()) ###查看所有默认配置
+
+"""
+2）设置相关的配置
+
+       # 修改方式一
+
+                      mpl.rcParams['lines.linewidth'] = 2
+
+                      mpl.rcParams['lines.color'] = 'r'
+
+       # 修改方式二
+
+                      mpl.rc('lines', linewidth=4, color='g')
+
+        # 恢复默认参数
+
+                      mpl.rcdefaults()
+
+        #从已有的文件更新
+
+                      mpl.cr_file()
+"""
+
+####使用配置示例
+ 
+x=np.linspace(0,2*np.pi)
+y=np.sin(x)
+ 
+matplotlib.rcParams['lines.color']='red'  #更改划线颜色的默认设置
+ 
+plt.plot(x,y,label='sin',linewidth=5)
+plt.legend()
+plt.show()
+
+####画出了红色的线
+
+##style则是使用风格，譬如上面使用了ggplot的风格
+
+"""
+1、预设风格的查看
+
+         方式一：直接查看相应的文件夹即可
+
+         方式二：print(plt.style.available)   #会打印出所有的预设风格的名称
+"""
+print(plt.style.available) 
+
+
+##预设风格的使用——就添加一句话即可
+
+x=np.linspace(0,2*np.pi)
+y=np.sin(x)
+plt.style.use('seaborn-deep')                         ##使用 ggplot  的绘图风格
+plt.plot(x,y,label='sin',linewidth=5)
+plt.legend()
+plt.show()
+
+###解读完毕，继续
+
+conn = MongoClient(host='127.0.0.1', port=27017)  # 实例化MongoClient
+db = conn.get_database('Laborday')  
+col = db.get_collection('ticket') # 连接到集合ticket
+mon_data = col.find()  # 查询这个集合下的所有记录
+
+data = json_normalize([rec for rec in mon_data])
+
+f = open('C:/Users/fangzhaoxing/Desktop/学习/python/data.csv')
+data = pd.read_csv(f)
+data.sample(5)
